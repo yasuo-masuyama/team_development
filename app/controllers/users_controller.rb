@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :login_required, only: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -7,6 +9,8 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       redirect_to user_path(@user.id), notice:"アカウントを作成しました"
+    else 
+      render :new,notice:"アカウントを作成できませんでした"
     end
   end
 
