@@ -9,6 +9,10 @@ class UsersController < ApplicationController
       #redirect_to ■■ notice:"アカウントを作成しました"
     end
   end
+
+  def show
+    @user = User.find(params[:id])
+  end
   
   private
 
